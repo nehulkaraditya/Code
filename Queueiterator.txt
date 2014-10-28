@@ -1,0 +1,59 @@
+import java.awt.List;
+import java.io.File;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.Scanner;
+
+
+public class ReadTemps {
+
+    public static void main(String[] args) throws IOException {
+    // TODO code application logic here
+
+    // // read KeyWestTemp.txt
+
+    // create token1
+    String token1 = "";
+
+    // for-each loop for calculating heat index of May - October
+
+    // create Scanner inFile1
+    @SuppressWarnings("resource")
+	Scanner inFile1 = new Scanner(new File("C:\\Users\\Aditya\\workspace\\Fulltime\\src\\file.txt")).useDelimiter(",\\s*");
+
+    LinkedList<String> temps = new LinkedList<String>();
+
+    // while loop
+    while (inFile1.hasNext()) {
+      // find next line
+      token1 = inFile1.next();
+      temps.add(token1);
+    }
+    inFile1.close();
+
+    String[] tempsArray = temps.toArray(new String[0]);
+    
+    PriorityQueue<String> pq = new PriorityQueue<String>();
+   pq.add("sss");
+    
+    System.out.println("#4 iterator");
+	Iterator<String> iterator = temps.iterator();
+	while (iterator.hasNext()) {
+		System.out.println(" kk"+iterator.next());	
+		//pq.add(iterator.next());
+		//System.out.println(pq.toString());	
+	}
+	
+	
+
+    for (String s : temps) {
+    	System.out.println("Space re");
+      System.out.println(s);
+      pq.add(s);
+      System.out.println(pq.toString());
+    }
+  }
+}
