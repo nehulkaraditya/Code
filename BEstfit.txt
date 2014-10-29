@@ -1,0 +1,61 @@
+import java.io.*;
+class Bestfit
+{
+int fn,bn;
+int file[],block[],bflag[],fragment[];
+BufferedReader input=new BufferedReader(new InputStreamReader(System.in));
+Bestfit() throws IOException
+{
+int i;
+System.out.println("Enter the number of files");
+fn=Integer.parseInt(input.readLine());
+System.out.println("Enter the number of blocks");
+bn=Integer.parseInt(input.readLine());
+file=new int[fn+1];
+block=new int[bn+1];
+bflag=new int[bn+1];
+fragment=new int[fn+1];
+for(i=0;i<bn;i++)
+bflag[i]=0;
+}
+
+void accept() throws IOException
+{
+int i;
+System.out.println("Enter the size of each file");
+for(i=0;i<fn;i++)
+file[i]=Integer.parseInt(input.readLine());
+System.out.println("Enter the size of each block");
+for(i=0;i<bn;i++)
+block[i]=Integer.parseInt(input.readLine());
+}
+
+void execute()
+{
+int i,j,min,p=-1;
+for(i=0;i<fn;i++)
+{
+min=block[0];
+for(j=0;j<bn;j++)
+{
+if((bflag[j]!=1)&&(file[i]<=block[j])&&(min>=block[j]))
+{
+min=block[j];
+p=j;
+}
+}
+fragment[i]=(Math.abs(file[i]-min));
+bflag[j]=1;
+System.out.println("Size of file " +i+" is: "+file[i]);
+System.out.println("Size of block " +p+" is: "+block[p]);
+System.out.println("Size of fragment " +i+" is: "+fragment[i]);
+}
+}
+
+public static void main(String args[]) throws IOException
+{
+Bestfit bf=new Bestfit();
+bf.accept();
+bf.execute();
+}
+}
